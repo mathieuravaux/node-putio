@@ -1,0 +1,35 @@
+{
+  "name": "node-putio",
+  "description": "Node driver for the Put.io API. Put.io a storage service that fetches media files and lets you stream them immediately.",
+  "version": "0.1.0",
+  "homepage": "http://mathieuravaux.github.com/node-putio",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mathieuravaux/node-putio.git"
+  },
+  "author": "Mathieu Ravaux <mathieu.ravaux@gmail.com> (http://twitter.com/mathieuravaux)",
+  "main": "lib/putio",
+  "directories": {
+    "lib": "lib/"
+  },
+  "scripts": {
+    "pretest": "coffee -c -o lib src; coffee -c -o test test-src",
+    "test": "vows test/*-test.js --spec",
+    "coverage": "rm -rf lib-cov; node-jscoverage -v lib lib-cov; COVERAGE=true vows test/*-test.js test-src/coverage_support.js"
+  },
+  "dependencies": {
+    "async": ">= 0.1.8",
+    "underscore": ">= 1.1.4",
+    "ltx": ">= 0.0.4",
+    "request": ">= 1.2.0"
+  },
+  "devDependencies": {
+    "docco": ">= 0.3.0",
+    "coffee-script": ">= 1.0.1",
+    "expresso": ">= 0.7.3",
+    "vows": ">= 0.5.6"
+  },
+  "engines": {
+    "node": ">= 0.2.6"
+  }
+}
