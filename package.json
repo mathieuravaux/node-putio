@@ -21,7 +21,8 @@
     "async": ">= 0.1.8",
     "underscore": ">= 1.1.4",
     "ltx": ">= 0.0.4",
-    "request": ">= 1.2.0"
+    "request": ">= 1.2.0",
+    "inspect": "*"
   },
   "devDependencies": {
     "docco": ">= 0.3.0",
