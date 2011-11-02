@@ -1,7 +1,7 @@
 {
   "name": "node-putio",
   "description": "Node driver for the Put.io API. Put.io a storage service that fetches media files and lets you stream them immediately.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "http://mathieuravaux.github.com/node-putio",
   "repository": {
     "type": "git",
