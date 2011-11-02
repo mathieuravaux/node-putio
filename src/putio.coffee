@@ -39,9 +39,8 @@ class PutIO
       "api_secret": @secret
       "params":     params
     body = "request=" + JSON.stringify(req_params)
-    url = "http://api.put.io/v1/#{resource}?method=#{method}&#{body}"
+    url = "http://api.put.io/v1/#{resource}?method=#{method}&#{body}".replace(/\"/g, "%22")
     debug "Requesting #{url}:"
-    debug body
     request {
       uri: url
       headers:

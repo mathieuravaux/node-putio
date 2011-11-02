@@ -2,7 +2,7 @@ vows    = require 'vows'
 assert  = require 'assert'
 _ = require('underscore')._
 
-node_putio = require(if process.env['COVERAGE'] then '../lib-cov/putio' else 'node-putio')
+node_putio = require(if process.env['COVERAGE'] then '../lib-cov/putio' else '../lib/putio')
 PutIO   = node_putio.PutIO
 
 sys = require 'sys'
@@ -152,14 +152,14 @@ suite.addBatch '':
       assert.ok chuck.dirs[0].name, 'Season 4'
   
   'call to list_directory':
-    topic: call_to 'list_directory', '11828782'
+    topic: call_to 'list_directory', '19316435'
     'should return a hash of dir and file descriptions': (list) ->
-      dir = _(list).detect (entry) -> entry.name is 'Season 4'
+      dir = _(list).detect (entry) -> entry.name is 'Art of Computer Programming'
       assert.strictEqual dir.is_dir, yes
-      s03e17 = _(list).detect (entry) -> entry.name is 'Chuck.S04E17.HDTV.XviD-LOL.avi'
-      assert.strictEqual s03e17.is_dir, no
-      assert.strictEqual s03e17.type, 'movie'
-      assert.strictEqual s03e17.size, '366508032'
+      book = _(list).detect (entry) -> entry.name is 'Working Effectively with Legacy Code.chm'
+      assert.strictEqual book.is_dir, no
+      assert.strictEqual book.type, 'file'
+      assert.strictEqual book.size, '2320821'
   
   'call to fs_dump':
     topic: call_to 'fs_dump'

@@ -4,7 +4,7 @@
   vows = require('vows');
   assert = require('assert');
   _ = require('underscore')._;
-  node_putio = require(process.env['COVERAGE'] ? '../lib-cov/putio' : 'node-putio');
+  node_putio = require(process.env['COVERAGE'] ? '../lib-cov/putio' : '../lib/putio');
   PutIO = node_putio.PutIO;
   sys = require('sys');
   inspect = function(obj) {
@@ -194,19 +194,19 @@
         }
       },
       'call to list_directory': {
-        topic: call_to('list_directory', '11828782'),
+        topic: call_to('list_directory', '19316435'),
         'should return a hash of dir and file descriptions': function(list) {
-          var dir, s03e17;
+          var book, dir;
           dir = _(list).detect(function(entry) {
-            return entry.name === 'Season 4';
+            return entry.name === 'Art of Computer Programming';
           });
           assert.strictEqual(dir.is_dir, true);
-          s03e17 = _(list).detect(function(entry) {
-            return entry.name === 'Chuck.S04E17.HDTV.XviD-LOL.avi';
+          book = _(list).detect(function(entry) {
+            return entry.name === 'Working Effectively with Legacy Code.chm';
           });
-          assert.strictEqual(s03e17.is_dir, false);
-          assert.strictEqual(s03e17.type, 'movie');
-          return assert.strictEqual(s03e17.size, '366508032');
+          assert.strictEqual(book.is_dir, false);
+          assert.strictEqual(book.type, 'file');
+          return assert.strictEqual(book.size, '2320821');
         }
       },
       'call to fs_dump': {
