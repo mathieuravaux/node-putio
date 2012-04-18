@@ -136,6 +136,9 @@ class PutIO
 
   list_directory: (directory_id, callback) ->
     @request 'files', 'list', {parent_id: directory_id}, callback
+
+  delete_file: (file_id, callback) ->
+    @request 'files', 'delete', {id: file_id}, callback
   
   walk_dirs = (node, iterator) ->
     iterator node
@@ -170,6 +173,7 @@ class PutIO
       return callback(err) if err
       ls_requests = {}
       walk_dirs tree, (dir) =>
+        console.log "-> Asking for list of dir #{dir}"
         ls_requests[dir.id] = _.bind @list_directory, @, dir.id
       async.parallel ls_requests, (err, ls_results) =>
         return callback(err) if err
