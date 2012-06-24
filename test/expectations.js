@@ -2,9 +2,9 @@
   var assert, equals, has_one, has_properties, have_property, inspect, matches, stop_word, sys, tap, _;
   assert = require('assert');
   _ = require('underscore')._;
-  sys = require('sys');
+  util = require('util');
   inspect = function(obj) {
-    return sys.puts(JSON.stringify(obj, null, 4));
+    return util.puts(JSON.stringify(obj, null, 4));
   };
   have_property = function(expectations) {
     return function(object) {
@@ -28,7 +28,7 @@
       return assert.equal(actual, expected);
     };
     matcher.toString = function() {
-      return "is equal to " + (sys.inspect(expected));
+      return "is equal to " + (util.inspect(expected));
     };
     return matcher;
   };
@@ -39,8 +39,8 @@
     } catch (fake_error) {
       where = fake_error.stack.split('\n')[1].replace(/^\s+/, '');
     }
-    sys.puts("EXPLAIN " + where + ":");
-    sys.puts("\t" + (expectations.toString()));
+    util.puts("EXPLAIN " + where + ":");
+    util.puts("\t" + (expectations.toString()));
     return expectations;
   };
   stop_word = function(expectation) {
@@ -87,7 +87,7 @@
         }
       });
       if (!result) {
-        return assert.fail("[" + (actual_values.map(sys.inspect).join(', ')) + "]", expectation.toString(), void 0, 'in');
+        return assert.fail("[" + (actual_values.map(util.inspect).join(', ')) + "]", expectation.toString(), void 0, 'in');
       }
     };
     matcher.toString = function() {
